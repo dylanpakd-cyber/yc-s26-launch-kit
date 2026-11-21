@@ -8,6 +8,50 @@ Six narrow AI agents that run a startup launch end to end: customer research, la
 
 They ship as Grok Bot templates. This repo is the full, open edition: every skill as a plain `SKILL.md` folder, the full operating rules for each bot, the long-form references (templates, worked examples, filled examples) and the check scripts that a template cannot carry. Use them in Grok Bot, Claude Code, Cursor, or any agent that can load markdown skills.
 
+## Two ways to use it
+
+### Path A: as Grok Bots
+
+Each bot is a Grok Bot template. Import it, then say "start". The bots carry their own skills, so there is nothing else to install.
+
+| Bot | Import |
+|---|---|
+| YC X Launch Desk | TEMPLATE_LINK |
+| YC Launch Ads | TEMPLATE_LINK |
+| YC Ad Test Desk | TEMPLATE_LINK |
+| YC Waitlist Email | TEMPLATE_LINK |
+| YC Customer Voice | TEMPLATE_LINK |
+| YC Launch Copy | TEMPLATE_LINK |
+
+Templates have a size limit and run no code, so the template edition is slimmer and its checks are written checklists applied by hand. This repo has the long form.
+
+### Path B: as skills in your coding agent
+
+Install the whole kit, or one bot, with the installer (bash only; the check scripts need `python3`, standard library only):
+
+```bash
+git clone https://github.com/dylanpakd-cyber/yc-s26-launch-kit.git && cd yc-s26-launch-kit && ./install.sh --target claude --all
+```
+
+| Agent | Command | Installs into |
+|---|---|---|
+| Claude Code | `./install.sh --target claude --all` | `~/.claude/skills/` (add `--project` for `./.claude/skills/`) |
+| Cursor | `./install.sh --target cursor --all` | `~/.cursor/skills/` (add `--project` for `./.cursor/skills/`) |
+| Codex and other agents that read `AGENTS.md` | `./install.sh --target codex --all --agents-md` | `~/.agents/skills/` (add `--project` for `./.agents/skills/`); `--agents-md` adds a short marked block to `./AGENTS.md` |
+| Anything else | `./install.sh --target path/to/skills --all` | the folder you name |
+
+One bot instead of six: `./install.sh --target claude --bot yc-launch-copy` (see `./install.sh --list`). Preview first with `--dry-run`. Re-running is safe: it replaces only the folders it owns.
+
+What lands in the skills folder, as flat `SKILL.md` folders:
+- `<bot>-operating-rules/`: the bot's system prompt as a skill, with the bot's `references/` and `scripts/` beside it.
+- one folder per skill (`<bot>-workflow`, `<bot>-getting-started`, the step skills, `<bot>-checks`, `<bot>-references`), each with a line pointing at its bot folder so `references/...` and `scripts/...` paths keep working.
+- the shared kit skills that bot uses, once each.
+- `yc-s26-launch-kit-router/`: picks the right bot for a request.
+
+Then tell the agent to load `<bot>-operating-rules` first (or the router skill), and say "start" or ask for one job ("write the welcome email").
+
+Rather work from the clone? Open the repo in your agent: [AGENTS.md](AGENTS.md) (and [CLAUDE.md](CLAUDE.md), which points to it) tell any coding agent how to route a request to the right bot, load `persona/operating-rules.md` first, then `<bot>-workflow`. For Cursor rules or another agent's system prompt, paste the bot's `persona/operating-rules.md`.
+
 ## The six bots
 
 | Bot | What it did for us | Skills | Check scripts | Grok Bot template |
@@ -25,6 +69,8 @@ Suggested order for one launch: Customer Voice, then Launch Copy and Launch Ads,
 
 ```
 README.md
+AGENTS.md, CLAUDE.md          routing instructions for coding agents
+install.sh                    installs bots as skills for Claude Code, Cursor, Codex or any folder
 LICENSE                       credit requirement + CC BY 4.0 for the prose
 bots/<bot>/
   card.md                     the bot's card: proof line, what it does, skills, folders, how to start
@@ -58,22 +104,6 @@ Each bot has the same skill shape:
 | [`build-the-voice-profile`](shared/build-the-voice-profile/SKILL.md) | Launch Copy, Waitlist Email |
 | [`humanizer`](shared/humanizer/SKILL.md) | Waitlist Email (quick mode only), Launch Copy (quick mode on every draft, full mode on request) |
 
-## Use it in Grok Bot
-
-Open a bot's template link (TEMPLATE_LINK in the table above), import it, and say "start". The template is a slimmer edition because templates have a size limit and run no code, so its checks are written checklists applied by hand. The skills here are the fuller versions and can be pasted in as replacements if you want the long form.
-
-## Use it with Claude Code, Cursor or another agent
-
-1. Install the whole bot folder, not just the skills. Keep `bots/<bot>/` together in your project (skills refer to `references/<file>.md` and `scripts/<check>.py` relative to that folder), then copy its skills, and the shared skills it uses, into your agent's skills folder, keeping the folder names (the folder name is the skill name the bots call each other by):
-   - Claude Code: `.claude/skills/<skill>/SKILL.md` in your project, or `~/.claude/skills/` for all projects.
-   - Cursor and other agents that read `SKILL.md` folders: their skills folder, or point the agent at this repo.
-   ```bash
-   cp -r bots/yc-launch-copy ./launch-kit-yc-launch-copy
-   cp -r bots/yc-launch-copy/skills/* shared/* .claude/skills/
-   ```
-2. Put the bot's `persona/operating-rules.md` in the agent's instructions (`CLAUDE.md`, Cursor rules, or a system prompt), plus one line saying where the bot folder is. Or just tell the agent to load `<bot>-workflow` first.
-3. Say "start", or ask for one job directly (for example "write the welcome email"). The router in the workflow skill picks the step skill.
-
 ## Check scripts
 
 Every check a skill names ("the style check", "the gates check", "the redaction check") has a script in that bot's `scripts/` folder; `<bot>-checks` names it under each heading. In the repo the scripts are the default and the written checklists are the fallback when the agent cannot run code.
@@ -89,7 +119,7 @@ Each script prints PASS or FAIL with the failing line, and exits 0 on pass, 1 on
 
 The leak check ships with generic patterns only (paths, handles, emails, money). Add your own private words (company, product, people, customers) in a `--terms` file before sharing anything outside your chat.
 
-## Notes for other agents
+## Notes for coding agents
 
 - The ISOLATION rule was written for a shared Grok Bot computer: it tells the bot to work only from its own skills and what you paste, and never to go looking through your files for brand or claim documents. In a code agent, loading the kit's own files (skills, references, scripts) is fine; keep the spirit (paste your facts, don't let it guess them).
 - "Save each answer as a memory" means: keep the setup answers somewhere the agent will see next session (for example a notes file you control).
@@ -112,3 +142,4 @@ Any copy, fork or republication of this repo or any file in it (including on Git
 
 ---
 Created and curated by Dylan Pak.
+License note: free to use and adapt. If you copy, fork, or republish this file anywhere (including GitHub), keep the credit "Created and curated by Dylan Pak."
