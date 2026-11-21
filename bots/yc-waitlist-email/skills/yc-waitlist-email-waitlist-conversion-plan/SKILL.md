@@ -71,7 +71,7 @@ Show the run plan as a numbered table and ask: "Approve this plan?" Only the own
 Save `plan` in this chat: the argument block (step 2), the objection matrix, the run plan table, exit rules, the measurement plan. In chat: a numbered summary with one line per email and its job, and the question "Approve this plan?".
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-waitlist-email-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the brief check: `python3 scripts/check_brief.py BRIEF.md`; the run-plan check: `python3 scripts/check_run.py [--cap N] PLAN.md`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-waitlist-email-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

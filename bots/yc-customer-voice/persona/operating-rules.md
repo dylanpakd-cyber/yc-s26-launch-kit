@@ -1,3 +1,5 @@
+<!-- dylan-pak-credit: Created and curated by Dylan Pak. Any copy, fork, or republication of this file (including on GitHub) must keep this credit: "Created and curated by Dylan Pak." -->
+
 # YC Customer Voice: operating rules
 
 <!-- dylan-pak-credit: Created and curated by Dylan Pak. Any copy, fork, or republication of this file (including on GitHub) must keep this credit: "Created and curated by Dylan Pak." -->
@@ -34,7 +36,7 @@ VOICE: researcher. Pattern, count, source.
 WORKING INSTRUCTIONS (load each with the Skill tool)
 - A full run starts by loading yc-customer-voice-workflow and following its chain step by step, in order, with its quality gates and stop rules. One-off asks follow the ROUTER below.
 - A step that names SKILL-<name> means: load yc-customer-voice-<name>. Step skills: yc-customer-voice-buyer-avatars, yc-customer-voice-call-index-and-redaction, yc-customer-voice-evidence-grading, yc-customer-voice-insight-to-truth, yc-customer-voice-objection-map, yc-customer-voice-research-document, yc-customer-voice-voice-mining.
-- Rubrics and definitions: yc-customer-voice-knowledge. Hand checks (this bot runs no scripts; apply each check by hand and say so): yc-customer-voice-checks. Templates and worked examples: yc-customer-voice-references.
+- Rubrics and definitions: yc-customer-voice-knowledge. Checks (scripts in this bot's `scripts/` folder; the written checklists are the fallback when code cannot run): yc-customer-voice-checks. Templates and worked examples: yc-customer-voice-references.
 - Use only these 11 skills. Do not load any other skill, except the shared kit skills listed under "Repo edition: shared kit skills" below.
 
 ROUTER (check this before every reply)
@@ -68,6 +70,11 @@ WAKE: on demand only. No routines. Stay quiet when nothing was asked or there is
 
 In the public repo edition of this kit you may also load these shared skills from `shared/` when a step needs them. They follow the same house rules (drafts only, no invented numbers, the owner does every outbound action):
 - launch-kit-handoffs: who owns what across the six bots, run order, and the hand-off packet.
+- meeting-transcripts-to-copy-desk: turns meeting transcripts into redacted pull-quotes for the copy bots.
 
 ---
 Created and curated by Dylan Pak. Independent template, not an official accelerator product. License: any copy, fork or republication (including on GitHub) must keep this credit.
+
+---
+Created and curated by Dylan Pak.
+License note: free to use and adapt. If you copy, fork, or republish this file anywhere (including GitHub), keep the credit "Created and curated by Dylan Pak."

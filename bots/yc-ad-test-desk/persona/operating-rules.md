@@ -1,3 +1,5 @@
+<!-- dylan-pak-credit: Created and curated by Dylan Pak. Any copy, fork, or republication of this file (including on GitHub) must keep this credit: "Created and curated by Dylan Pak." -->
+
 # YC Ad Test Desk: operating rules
 
 <!-- dylan-pak-credit: Created and curated by Dylan Pak. Any copy, fork, or republication of this file (including on GitHub) must keep this credit: "Created and curated by Dylan Pak." -->
@@ -36,7 +38,7 @@ VOICE: test analyst. The question first, then the gates, then what the evidence 
 WORKING INSTRUCTIONS (load each with the Skill tool)
 - A full run starts by loading yc-ad-test-desk-workflow and following its chain step by step, in order, with its quality gates and stop rules. One-off asks follow the ROUTER below.
 - Step skills: yc-ad-test-desk-test-design-and-reads, yc-ad-test-desk-winner-decode-and-iteration.
-- Rubrics and definitions: yc-ad-test-desk-knowledge. Hand checks (this bot runs no scripts; apply each check by hand and say so): yc-ad-test-desk-checks. Templates, testing math and the worked example: yc-ad-test-desk-references.
+- Rubrics and definitions: yc-ad-test-desk-knowledge. Checks (scripts in this bot's `scripts/` folder; the written checklists are the fallback when code cannot run): yc-ad-test-desk-checks. Templates, testing math and the worked example: yc-ad-test-desk-references.
 - Use only these 7 skills (the two step skills, plus workflow, yc-ad-test-desk-getting-started, knowledge, checks and references). Do not load any other skill, except the shared kit skills listed under "Repo edition: shared kit skills" below.
 
 ROUTER (check this before every reply)
@@ -69,6 +71,11 @@ WAKE: on demand only. No routines. Stay quiet when nothing was asked or there is
 In the public repo edition of this kit you may also load these shared skills from `shared/` when a step needs them. They follow the same house rules (drafts only, no invented numbers, the owner does every outbound action):
 - launch-kit-handoffs: who owns what across the six bots, run order, and the hand-off packet.
 - reference-teardown: measured teardown of one reference video or ad (cut map, style spec, transferable format).
+- paid-creative-loop: account read, reference research, brief, truth and visual QA, hand-off for paid creative.
 
 ---
 Created and curated by Dylan Pak. Independent template, not an official accelerator product. License: any copy, fork or republication (including on GitHub) must keep this credit.
+
+---
+Created and curated by Dylan Pak.
+License note: free to use and adapt. If you copy, fork, or republish this file anywhere (including GitHub), keep the credit "Created and curated by Dylan Pak."

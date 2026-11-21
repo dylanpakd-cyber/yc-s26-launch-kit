@@ -28,11 +28,11 @@ Drafts only: the send check never sends or schedules. A PASS is not permission. 
    - Would I believe each proof line, or have I heard that shape so often I tune it out?
    - For a run: does this email repeat a scene or proof moment from another email? The offer block may repeat; scenes and proof moments may not.
    If the answer to the first question is wrong or slow, the email fails. Give the draft to the owner or a fresh reader for the same question when possible.
-2. **Run the email check by hand** (yc-waitlist-email-checks). The built-in banned list always applies; add the words from {BANNED_WORDS_FILE} only if the owner pasted a list. Write "checked by hand" in the result. Never claim a check ran when it did not.
+2. **Run the email check** (`python3 scripts/check_email.py --facts <brief> <drafts>`, or by hand from yc-waitlist-email-checks). The built-in banned list always applies; add the words from {BANNED_WORDS_FILE} only if the owner pasted a list. Write "checked by hand" in the result. Never claim a check ran when it did not.
 3. **Walk the MANUAL items** that need the owner to look in {EMAIL_TOOL}.
 4. **Write the verdict.**
 
-## The 14 checks (S = hand check from yc-waitlist-email-checks, M = manual)
+## The 14 checks (S = script check from yc-waitlist-email-checks, M = manual)
 1. (S) Banned words: none from the built-in list or {BANNED_WORDS_FILE}.
 2. (S) Locks: sign-off present, {UNSUBSCRIBE} or the footer token present. (M) legal or postal line present if the owner's market needs it.
 3. (S, against the facts sheet) Every amount in the email appears in the facts sheet. (M) Offer, guarantee and dates match the brief word for word.
@@ -63,7 +63,7 @@ For any line true only under a condition (stock, date, region, plan type), write
 Draft subject: "LAST CHANCE: founding plan ends!!" Hand-check result: check 6 FAIL (ALL CAPS word; more than one "!"); check 12 FAIL (urgency words but Deadline is none). Fix: subject becomes "Founding price ends at 9 tonight"; Deadline header set to "Thursday 21:00 PT" after the owner confirms the checkout stops then. Second run: all script checks PASS; MANUAL items 13 and 14 ticked by the owner. Verdict: PASS. Send check line: "Send check: 14 checks and a cold read, fixed 2."
 
 ## Verdicts
-- **PASS:** every hand check passes, every MANUAL item is ticked, the cold read answers are right.
+- **PASS:** every script check passes, every MANUAL item is ticked, the cold read answers are right.
 - **FIX:** list the failing checks, first failure named first, with the fixed line. Go back to step 3 or 4.
 - **HOLD:** an honesty issue the owner must decide (a claim with no proof, a deadline that may not be real). Nothing moves until the owner answers.
 Report line: "Send check: 14 checks and a cold read, fixed [n]." Say "nothing to fix" when n is zero.
@@ -74,7 +74,7 @@ Revision cap: two FIX rounds per email. After the second, stop. Show the owner t
 PASS on every draft in the send, the leave-out list written, true-only-if notes written. Then, and only then, ask: "Ready for you to schedule? Reply yes with the audience and the time."
 
 ## Failure handling
-- Every check is applied by hand; say "checked by hand".
+- Run each check with its script (`python3 scripts/check_email.py --facts <brief> <drafts>`); when code cannot run, apply it by hand and say "checked by hand".
 - Facts sheet missing: verdict HOLD; go back to step 1.
 - Owner insists on a failing line: record the owner's decision and the check it fails. Do not mark it PASS.
 
@@ -82,7 +82,7 @@ PASS on every draft in the send, the leave-out list written, true-only-if notes 
 `send-check` in this chat: per email, the cold read answers, the hand-check results, the MANUAL ticks, the leave-out line, the true-only-if notes, the verdict. In chat: the one-line report per email and the three lists (drafted, approved, needs a decision).
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-waitlist-email-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the email check: `python3 scripts/check_email.py [--banned FILE] [--facts FILE] [--max-subject N] DRAFT.md [DRAFT.md ...]`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-waitlist-email-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

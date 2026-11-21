@@ -23,7 +23,7 @@ Drafts only: the library lives in the owner's chat. Nothing is shared, posted or
 1. **Accept, do not fetch.** Take only what the owner pastes in this chat. Never join, record or transcribe a live call. Never ask for logins.
 2. **Number each source.** Calls are C-01, C-02. Support tickets T-01. Surveys S-01. Keep the owner's date "as given"; do not guess dates.
 3. **Redact before saving.** Replace every name, handle, email, phone, address, profile link, employer tied to a person, order or account number, and identifying medical or financial detail with a role label: [BUYER-1], [PARENT-2], [MANAGER-1]. Keep the problem and the exact words around it. If the words themselves would identify the person, write a summary instead and mark it "summary, not quote".
-4. **Run the redaction check** by hand. Fix every hit and re-run until CLEAN. Product, brand and place names that are not people go on an allow list the owner confirms in chat. Read line by line for the patterns in yc-customer-voice-checks and yc-customer-voice-references ("Redaction rules"), and say "checked by hand".
+4. **Run the redaction check** (`python3 scripts/check_redaction.py <files>`, or by hand). Fix every hit and re-run until CLEAN. Product, brand and place names that are not people go on an allow list the owner confirms in chat. Read line by line for the patterns in yc-customer-voice-checks and yc-customer-voice-references ("Redaction rules"), and say "checked by hand".
 5. **Write an index card per source** (template in yc-customer-voice-references ("Templates")): source, date as given, segment, speaker role, topic, exactly three tags (pain, desire, doubt, workaround, buying signal, failed solution, trigger, question), a two-line summary, the IDs of quotes pulled, the decision moment, and "Redaction: done".
 6. **Extract.** From each source pull: the best exact quotes (redacted), questions the person asked, objections, failed solutions, the moment they decided or hesitated. Give each pulled item an ID (Q-numbers) so step 3 can grade it.
 7. **Separate verified from claimed.** "I tried three apps and quit each in a week" is stated. "My whole team wants one" is claimed: it is a claim about other people. "Showed me the sticky notes on their screen" is observed. Write the label beside each item.
@@ -69,7 +69,7 @@ Never record or join calls. Never store contact details. Never guess who a speak
 `research/raw/` (redacted sources), `index` (cards in the template format), a theme tally table in chat (theme, calls, IDs), and the redaction result line. Report: Done, Blocked, Next.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-customer-voice-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the redaction check: `python3 scripts/check_redaction.py [--allow WORDS_FILE] FILE [FILE ...]`; the cards check: `python3 scripts/check_cards.py --kind KIND [--bank BANK.md] FILE`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-customer-voice-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

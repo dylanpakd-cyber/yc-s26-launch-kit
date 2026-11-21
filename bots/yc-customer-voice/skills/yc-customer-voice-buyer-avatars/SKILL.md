@@ -88,7 +88,7 @@ Do not invent a life story. Do not use a real person's name or details. Do not s
 `avatars` with the cards (and any count note). In chat: the avatar nicknames with one line each and the distinctness result. Then paste one-line summaries into the research document's Key personas section. Report: Done, Blocked, Next.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-customer-voice-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the cards check: `python3 scripts/check_cards.py --kind KIND [--bank BANK.md] FILE`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-customer-voice-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

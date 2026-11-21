@@ -90,7 +90,7 @@ All six locked before any other bot drafts. No invented proof. No scarcity that 
 `locks`, one page per pair, plus `handoff`: per desk (ads, email, copy, X) the lock page, the passing angles, and the quote pack. In chat: pairs locked, angles passed, open locks. Report: Done, Blocked, Next.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-customer-voice-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the cards check: `python3 scripts/check_cards.py --kind KIND [--bank BANK.md] FILE`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-customer-voice-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

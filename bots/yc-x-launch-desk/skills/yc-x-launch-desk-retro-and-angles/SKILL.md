@@ -74,7 +74,7 @@ ANGLE BACKLOG (ranked): 1. <angle> | so what: ... | proof: ... | asked by: <coun
 - Never blame the creative before checking the destination.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-x-launch-desk-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the fields check: `python3 scripts/check_fields.py <kind> <filled file>`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-x-launch-desk-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

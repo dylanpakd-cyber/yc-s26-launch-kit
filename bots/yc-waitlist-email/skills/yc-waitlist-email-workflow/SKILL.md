@@ -22,7 +22,7 @@ VOICE: warm, plain, sounds like the founder writing to a friend.
 
 WORKING INSTRUCTIONS
 - A step that names SKILL-<name> means: load yc-waitlist-email-<name>. The step skills are listed in the ROUTER below.
-- Rubrics and definitions: yc-waitlist-email-knowledge. Hand checks (this bot runs no scripts; apply each check by hand and say so): yc-waitlist-email-checks. Templates and worked examples: yc-waitlist-email-references.
+- Rubrics and definitions: yc-waitlist-email-knowledge. Checks (scripts in this bot's `scripts/` folder; the written checklists are the fallback when code cannot run): yc-waitlist-email-checks. Templates and worked examples: yc-waitlist-email-references.
 - Use only these 10 skills. Do not load any other skill, except the shared kit skills listed under "Repo edition: shared kit skills" at the end of this file.
 
 HOUSE RULES
@@ -79,18 +79,10 @@ Filled by the owner on first run. Never guess them. Ask one at a time and save e
 | {BANNED_WORDS_FILE} | extra banned words | built-in list only |
 
 ## The chain
-1 Brief + voice lock -> 2 Conversion plan -> 3 Draft -> 4 Edit pass -> 5 Launch-to-close set -> 6 Welcome + nurture (late joiners, buyers) -> 7 Send check (hand checks + cold read; FIX: back to 3 or 4, max 2 rounds) -> owner's explicit yes -> owner schedules in {EMAIL_TOOL}.
+1 Brief + voice lock -> 2 Conversion plan -> 3 Draft -> 4 Edit pass -> 5 Launch-to-close set -> 6 Welcome + nurture (late joiners, buyers) -> 7 Send check (check scripts + cold read; FIX: back to 3 or 4, max 2 rounds) -> owner's explicit yes -> owner schedules in {EMAIL_TOOL}.
 
 ## Step table with entry and exit
-| # | Skill | Entry (must be true to start) | Exit (must be true to move on) | Gate check | If it fails |
-|---|---|---|---|---|---|
-| 1 | yc-waitlist-email-email-brief-and-voice | owner answered the first-run questions | `brief` and {EMAIL_LOCKS} saved | the brief check passes | offer or dates missing: stop, ask one question at a time |
-| 2 | yc-waitlist-email-waitlist-conversion-plan | step 1 exit is true | run plan table approved by owner | the run-plan check passes and owner says yes to the plan | fix the row named; second fail: show the owner and ask |
-| 3 | yc-waitlist-email-email-draft-and-edit (Draft) | approved plan row for this email | one draft block per row | fact inventory has no invented fact | unknown fact becomes [NEED: what] |
-| 4 | yc-waitlist-email-email-draft-and-edit (Edit) | a draft exists | edited draft plus change list | facts unchanged from step 3 | a fact changed: revert it |
-| 5 | yc-waitlist-email-launch-close-sequence | plan has launch, middle, deadline, last-hours, close rows | every row drafted, calendar table | five deadline tests pass, or no deadline lines | deadline not real: remove deadline lines, use cost of waiting |
-| 6 | yc-waitlist-email-welcome-and-nurture | signup page promise quoted | welcome, bridge, nurture, late-joiner and buyer paths | promise check passes | welcome over-promises: rewrite |
-| 7 | yc-waitlist-email-send-check | all drafts for this send exist | PASS on every draft, cold read answered | the email check passes; MANUAL items ticked | FIX: back to step 3 or 4 |
+The full step table (entry, exit, gate and failure path for every step) is in this bot's `references/step-table.md`. Read it before a full run and before any step whose gate you are unsure of. The chain above is the order; the table is the detail.
 
 ## Loop limits
 - Revision cap: two fix rounds per email. After the second failed send check, stop and show the owner the exact failing check and two options.
@@ -118,10 +110,25 @@ All in this chat: `brief` (step 1: facts, voice, locks), `plan` (step 2: run pla
 ## Working notes for this template
 - This bot works only from its own yc-waitlist-email-* skills and what the owner pastes in this chat. It reads no files.
 - Names in backticks, such as `plan` or `brief`, are blocks you produce in this chat under that heading. Never read or write files on the shared computer.
-- Every check named in this chain is a written checklist in yc-waitlist-email-checks. There are no scripts: apply each check by hand and write "checked by hand" next to the result.
+- Every check named in this chain has a script in this bot's `scripts/` folder (yc-waitlist-email-checks names the script for each check). Run it and paste its PASS or FAIL line. When code cannot run, apply the written checklist by hand and write \"checked by hand\".
 - Templates, filled examples and the sample campaign are in yc-waitlist-email-references.
 - Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
 - No routines. Work happens only when the owner asks.
+
+## How to run the checks (repo edition)
+Run these from this bot's folder (`bots/yc-waitlist-email/`). The built-in banned list needs no file; add `--banned FILE` only if the owner supplies an extra list. The practice campaign is in `references/sample-campaign/`.
+```
+# practice run on the sample (works right away)
+python3 scripts/check_brief.py references/sample-campaign/brief.md
+python3 scripts/check_run.py references/sample-campaign/plan.md
+python3 scripts/check_email.py --facts references/sample-campaign/brief.md references/sample-campaign/drafts/*.md
+# your campaign (the owner keeps these files)
+python3 scripts/check_brief.py campaign/brief.md
+python3 scripts/check_run.py campaign/plan.md
+python3 scripts/check_email.py --facts campaign/brief.md campaign/drafts/*.md
+python3 scripts/check_leak.py campaign/
+```
+Each script prints PASS or FAIL per check, exits 0 on pass, 1 on fail, 2 on a usage error, and has a `--selftest` flag. If the bot cannot run code, apply the same checks by hand from yc-waitlist-email-checks and say "checked by hand".
 
 ## Repo edition: shared kit skills
 

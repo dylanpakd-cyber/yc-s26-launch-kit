@@ -1,0 +1,8 @@
+# <!-- dylan-pak-credit: Created and curated by Dylan Pak. Any copy, fork, or republication of this file (including on GitHub) must keep this credit: "Created and curated by Dylan Pak." -->
+# Example hooks for the fictional meal-plan app. Scores are rubric reads, not predictions.
+Your meal plan dies on Wednesday because nobody else can see it. | score: 5 4 5 5 4 | claimed: PASS
+"What's for dinner?" is a question your plan should answer, not you. | score: 4 4 4 4 4 | claimed: PASS
+I planned seven dinners on Sunday. We ate takeout by Wednesday. | score: 4 5 4 5 5 | grade: 8 7 8 6 7 7 7 7 7 8 8 8 | claimed: PASS
+
+# Created and curated by Dylan Pak.
+# License note: free to use and adapt. If you copy, fork, or republish this file anywhere (including GitHub), keep the credit "Created and curated by Dylan Pak."

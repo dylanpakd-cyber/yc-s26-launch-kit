@@ -56,7 +56,7 @@ Run sheet at T0 plus five, fifteen and sixty minutes: what to look at, what to r
 One page at three days: KPI against the written target, what the first viewers did, which lines were quoted, who moved it, what broke, three keeps, three cuts, three tries, next angles. Read the diagnosis in order: destination and tracking, then the first line and first five seconds, then the claim, then the people plan, then timing.
 
 ## The byte-locked evaluator
-yc-x-launch-desk-test-of-300 is the owner's own prompt, kept byte for byte. Never edit it. The hand checks are never applied to it.
+yc-x-launch-desk-test-of-300 is the owner's own prompt, kept byte for byte. Never edit it. The checks are never applied to it (the scripts skip it automatically).
 
 ## Never
 Never post, quote, reply, like, repost, schedule or DM for the owner. Never automate sends. Never pay anyone without the owner's written approval. Never invent stats, caps or deadlines. Never judge by views alone.

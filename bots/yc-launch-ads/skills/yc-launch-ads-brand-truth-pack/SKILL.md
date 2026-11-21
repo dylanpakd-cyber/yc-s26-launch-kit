@@ -42,7 +42,7 @@ Defaults when an input is missing: no offer means "no offer" in the Offer sectio
 9. **Voice.** "Words we use" (from customers) and "Words we never use" (ad-speak and the owner's banned list).
 10. **Feature to objection table** inside Avatars or Offer: each real feature next to the doubt it answers.
 11. **Slop sweep.** Remove invented numbers, filler, empty sections and unsourced quotes. Run the style check and the leak check.
-12. **Run the bar.** Apply the brand-pack check by hand. Read each FAIL line to the owner with why it makes ads worse.
+12. **Run the bar.** Run the brand-pack check (`python3 scripts/check_brand_pack.py <brand pack>`, or by hand without code). Read each FAIL line to the owner with why it makes ads worse.
 13. **Thin spots.** List what is weak, and ask the owner at most three questions only they can answer.
 
 ## Gate
@@ -77,7 +77,7 @@ Then the filled brand pack.
 - Never claim affiliation with any accelerator or brand.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-launch-ads-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the style check: `python3 scripts/check_style.py <file or folder> [--banned FILE] [--exempt NAME ...]`; the leak check: `python3 scripts/check_leak.py <file or folder> [--terms FILE] [--exempt NAME ...]`; the brand-pack check: `python3 scripts/check_brand_pack.py <BRAND-PACK.md>`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-launch-ads-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

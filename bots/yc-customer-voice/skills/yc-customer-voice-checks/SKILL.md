@@ -1,23 +1,25 @@
 ---
 name: yc-customer-voice-checks
-description: "YC Customer Voice: use when the owner asks \"is this redacted?\", check the quote bank, do we have enough evidence; for the written hand checks the steps apply: redaction, quote bank, evidence bar and cards. Not for grading new quotes (evidence-grading)."
+description: "YC Customer Voice: use when the owner asks \"is this redacted?\", check the quote bank, do we have enough evidence; for the checks the steps apply (scripts plus written checklists): redaction, quote bank, evidence bar and cards. Not for grading new quotes (evidence-grading)."
 ---
 
 <!-- dylan-pak-credit: Created and curated by Dylan Pak. Any copy, fork, or republication of this file (including on GitHub) must keep this credit: "Created and curated by Dylan Pak." -->
 
-WHEN TO USE: the owner asks "is this redacted?", check the quote bank, do we have enough evidence; this skill covers the written hand checks the steps apply: redaction, quote bank, evidence bar and cards. WHEN NOT: grading new quotes (evidence-grading). One-off asks can load this skill directly; a full run reaches it through yc-customer-voice-workflow.
-# YC Customer Voice: hand checks
+WHEN TO USE: the owner asks "is this redacted?", check the quote bank, do we have enough evidence; this skill covers the checks the steps apply (scripts plus written checklists): redaction, quote bank, evidence bar and cards. WHEN NOT: grading new quotes (evidence-grading). One-off asks can load this skill directly; a full run reaches it through yc-customer-voice-workflow.
+# YC Customer Voice: checks
 
-This bot has no scripts and runs no code. Every check named in the other skills ("the style check", "the redaction check" and so on) is one of the written checklists below. Apply it by hand, line by line, on the text in this chat. Then print each check as PASS or FAIL with the line that failed, and add the words "checked by hand" to the result. Never edit a draft only to make a check pass; fix the real problem or report it.
+In the repo edition every check below has a script in this bot's `scripts/` folder, named under its heading: run it from the bot folder and paste its PASS or FAIL line. Inside a Grok Bot template, which runs no code, use the written checklist instead. Every check named in the other skills ("the style check", "the redaction check" and so on) is one of the checks below. When you cannot run its script, apply it by hand, line by line, on the text in this chat. Then print each check as PASS or FAIL with the line that failed, and add the words "checked by hand" to the result. Never edit a draft only to make a check pass; fix the real problem or report it.
 
 Every check gives one of three results: PASS, FAIL (list each failing line and why), or CANNOT CHECK (the input is missing; ask the owner for it).
 
 ## Redaction check
+Script: `python3 scripts/check_redaction.py [--allow WORDS_FILE] FILE [FILE ...]`
 Run on every source before it is saved in the research and on every quote before it is shown.
 Find and remove: email addresses; phone numbers; social handles; profile links (any link to a person's page on a social site or a link with /u/, /user/, /profile or /in/); street addresses; order, account, ticket or invoice numbers; card-like numbers; and likely personal names. Names hide behind cues such as "my name is", "I'm", "I am", "this is", "named", "called", "said", "told me", "husband", "wife", "son", "daughter", "boss", "Mr", "Mrs", "Ms", "Dr", and before "said", "wrote", "asked", "mentioned". Check cues at the start of a sentence and in any case. A Name, Customer, Speaker, Interviewee, Reviewer or Author field must hold a role label, not a name.
 Role labels such as [BUYER-3] are fine. Product, brand and place names the owner lists are fine. Result: CLEAN, or each hit with its line.
 
 ## Quote-bank check
+Script: `python3 scripts/check_quote_bank.py BANK.md`
 The bank is a table: ID | Quote | Verbatim | Source type | Source ref | Date | Speakers | Label | Tier | Theme | Use | Consent.
 1. Every column present; IDs unique; no blank cells (use "n/a" or "unknown").
 2. Verbatim is yes or no. Label is stated, observed or claimed.
@@ -27,6 +29,7 @@ The bank is a table: ID | Quote | Verbatim | Source type | Source ref | Date | S
 6. Quote text passes the redaction check.
 
 ## Evidence check
+Script: `python3 scripts/check_evidence.py --bank BANK.md [--doc DOC.md] [--min-sources N]`
 Part 1, the minimum-evidence bar (always):
 1. 10 or more distinct source refs.
 2. 2 or more source types, at least one of them not friend.
@@ -39,13 +42,25 @@ Part 2, the research document:
 4. Concepts is empty or says "left empty". This bot writes no ads.
 
 ## Cards check
+Script: `python3 scripts/check_cards.py --kind KIND [--bank BANK.md] FILE`
 Each card starts with a "## " heading and holds "Field: value" lines. No field may hold a personal identifier.
 - index: Source, Date, Segment, Speaker role, Topic, Tags, Summary, Quote IDs, Decision moment, Redaction. Tags are 3 of: pain, desire, doubt, workaround, buying signal, failed solution, trigger, question. Redaction must be done.
 - avatar: Nickname, Age band, Core problem, Moment it bites, Top fears, Emotional drivers, Failed solutions, Soundbites, Desired transformation, Market beliefs, Emotional blockers, Relationship impact, Objections, Awareness level, Where they spend time, Proof that persuades, Inferred. Top fears has 5 items separated by ";". Soundbites cite 3 or more quote-bank IDs at Tier A or B. Three avatars when the evidence shows three distinct core problems; fewer with an "Avatar count note:" that gives the evidence; never more than 3. Two avatars with the same core problem are the same person.
 - objection: Objection, Count, Sources, Belief, Fear, Identity, Defuse, Proof, Does not claim, Avatar, Asset. Count is a number. Proof cites a source or says [NEED PROOF].
 - locks: People, Not for, Empathy, Doing, Frustrations, Heaven, Hell, Positioning, How it works, Promise, So what, Proof, Priority, Honesty check. No lock field is [NEED]. Empathy cites a Tier A or B quote-bank ID. Honesty check must be PASS.
 
+## Style check
+Script: `python3 scripts/check_style.py <file or folder> [--banned FILE]`
+Run on the research document, the brand sheet, avatar cards, objection stacks, lock pages and the hand-off pack before the owner sees them. Never run it on customer quotes: quotes stay verbatim (the redaction check governs them).
+1. No em dash or en dash anywhere outside a verbatim quote. Use a full stop or a comma.
+2. Banned words: none of these, in any form, outside a verbatim quote: leverage, seamless, seamlessly, robust, elevate, unlock, unlocks, delve, journey, game-changer, game changer, revolutionary, empower, supercharge, unleash, cutting-edge, next level, "in today's world", "in today's fast-paced", "look no further", "say goodbye to", "transform your".
+3. None of the words on the owner's {BANNED_WORDS_FILE}, if pasted.
+4. Banned words: no "it is not just X, it is Y" sentence.
+5. Warn (do not fail) on any sentence over 30 words outside tables, headings and quotes.
+A line that starts with "Banned words:" lists bans, not uses; skip it.
+
 ## Leak check
+Script: `python3 scripts/check_leak.py <file or folder> [--terms FILE] [--exempt NAME ...]`
 Run on every draft and on anything the owner may share or export. FAIL on any of these:
 1. A file path from a computer (a home folder, a workspace folder, a path starting with a tilde).
 2. A social handle (an at-sign followed by a name).
@@ -55,6 +70,7 @@ Run on every draft and on anything the owner may share or export. FAIL on any of
 6. Any private word the owner listed (their company, product, people or customers) appearing where the text will be shared outside the owner's chat.
 
 ## Export check (only when the owner asks to export or copy a skill)
+Script: `python3 scripts/check_credit.py <folder> [--exempt NAME ...]`
 1. The first line of every exported skill is the dylan-pak-credit comment.
 2. The last two lines are "Created and curated by Dylan Pak." and the license note.
 3. The leak check passes on every exported file.

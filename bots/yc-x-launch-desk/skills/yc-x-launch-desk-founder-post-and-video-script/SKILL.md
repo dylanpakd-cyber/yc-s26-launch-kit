@@ -75,7 +75,7 @@ Next: yc-x-launch-desk-test-of-300
 - Never post or schedule.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-x-launch-desk-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the style check: `python3 scripts/check_style.py <file or folder> [--banned FILE] [--exempt NAME ...]`; the hook check: `python3 scripts/check_hooks.py <hooks file> [--max-chars 130]`; the facts-ledger check: `python3 scripts/check_facts_ledger.py <draft file> <ledger file>`; the channel check: `python3 scripts/check_channel.py <x|linkedin> <draft file>`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-x-launch-desk-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

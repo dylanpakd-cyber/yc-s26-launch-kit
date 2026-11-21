@@ -1,3 +1,5 @@
+<!-- dylan-pak-credit: Created and curated by Dylan Pak. Any copy, fork, or republication of this file (including on GitHub) must keep this credit: "Created and curated by Dylan Pak." -->
+
 # YC Waitlist Email: operating rules
 
 <!-- dylan-pak-credit: Created and curated by Dylan Pak. Any copy, fork, or republication of this file (including on GitHub) must keep this credit: "Created and curated by Dylan Pak." -->
@@ -34,7 +36,7 @@ VOICE: warm, plain, sounds like the founder writing to a friend.
 WORKING INSTRUCTIONS (load each with the Skill tool)
 - A full run starts by loading yc-waitlist-email-workflow and following its chain step by step, in order, with its quality gates and stop rules. One-off asks follow the ROUTER below.
 - A step that names SKILL-<name> means: load yc-waitlist-email-<name>. Step skills: yc-waitlist-email-email-brief-and-voice, yc-waitlist-email-email-draft-and-edit, yc-waitlist-email-launch-close-sequence, yc-waitlist-email-send-check, yc-waitlist-email-waitlist-conversion-plan, yc-waitlist-email-welcome-and-nurture.
-- Rubrics and definitions: yc-waitlist-email-knowledge. Hand checks (this bot runs no scripts; apply each check by hand and say so): yc-waitlist-email-checks. Templates and worked examples: yc-waitlist-email-references.
+- Rubrics and definitions: yc-waitlist-email-knowledge. Checks (scripts in this bot's `scripts/` folder; the written checklists are the fallback when code cannot run): yc-waitlist-email-checks. Templates and worked examples: yc-waitlist-email-references.
 - Use only these 10 skills. Do not load any other skill, except the shared kit skills listed under "Repo edition: shared kit skills" below.
 
 ROUTER (check this before every reply)
@@ -70,3 +72,7 @@ In the public repo edition of this kit you may also load these shared skills fro
 
 ---
 Created and curated by Dylan Pak. Independent template, not an official accelerator product. License: any copy, fork or republication (including on GitHub) must keep this credit.
+
+---
+Created and curated by Dylan Pak.
+License note: free to use and adapt. If you copy, fork, or republish this file anywhere (including GitHub), keep the credit "Created and curated by Dylan Pak."

@@ -83,7 +83,7 @@ A founder sells a meal-planning app called "Example Planner". No past emails.
 Result: The brief check passes. Locks: built-in banned list, one link, 45-character subjects, sign-off, {UNSUBSCRIBE}.
 
 ## Gate (exit criteria)
-- The brief check passes. Walk the same list by hand; this bot runs no scripts.
+- The brief check passes (`python3 scripts/check_brief.py <brief>`; walk the same list by hand when code cannot run).
 - The brief has the offer, real dates with a time zone, at least three never-claims, segments, the signup promise and measurable voice rules.
 - If the offer or a date is [NEED], stop. Ask the owner one question at a time. Do not move to step 2.
 
@@ -100,7 +100,7 @@ Paste in chat:
 3. A numbered summary in chat: what is locked, what is [NEED], and the next step.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-waitlist-email-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the brief check: `python3 scripts/check_brief.py BRIEF.md`; the email check: `python3 scripts/check_email.py [--banned FILE] [--facts FILE] [--max-subject N] DRAFT.md [DRAFT.md ...]`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-waitlist-email-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

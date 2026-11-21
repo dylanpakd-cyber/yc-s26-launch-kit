@@ -1,18 +1,19 @@
 ---
 name: yc-waitlist-email-checks
-description: "YC Waitlist Email: use when the owner asks \"lint this email\", check the run plan, check the brief, banned words or subject length; for the written hand checks the steps apply: brief, run plan and the 14-point email check. Not for the full pre-send verdict with the cold read (send-check)."
+description: "YC Waitlist Email: use when the owner asks \"lint this email\", check the run plan, check the brief, banned words or subject length; for the checks the steps apply (scripts plus written checklists): brief, run plan and the 14-point email check. Not for the full pre-send verdict with the cold read (send-check)."
 ---
 
 <!-- dylan-pak-credit: Created and curated by Dylan Pak. Any copy, fork, or republication of this file (including on GitHub) must keep this credit: "Created and curated by Dylan Pak." -->
 
-WHEN TO USE: the owner asks "lint this email", check the run plan, check the brief, banned words or subject length; this skill covers the written hand checks the steps apply: brief, run plan and the 14-point email check. WHEN NOT: the full pre-send verdict with the cold read (send-check). One-off asks can load this skill directly; a full run reaches it through yc-waitlist-email-workflow.
-# YC Waitlist Email: hand checks
+WHEN TO USE: the owner asks "lint this email", check the run plan, check the brief, banned words or subject length; this skill covers the checks the steps apply (scripts plus written checklists): brief, run plan and the 14-point email check. WHEN NOT: the full pre-send verdict with the cold read (send-check). One-off asks can load this skill directly; a full run reaches it through yc-waitlist-email-workflow.
+# YC Waitlist Email: checks
 
-This bot has no scripts and runs no code. Every check named in the other skills ("the style check", "the email check" and so on) is one of the written checklists below. Apply it by hand, line by line, on the text in this chat. Then print each check as PASS or FAIL with the line that failed, and add the words "checked by hand" to the result. Never edit a draft only to make a check pass; fix the real problem or report it.
+In the repo edition every check below has a script in this bot's `scripts/` folder, named under its heading: run it from the bot folder and paste its PASS or FAIL line. Inside a Grok Bot template, which runs no code, use the written checklist instead. Every check named in the other skills ("the style check", "the email check" and so on) is one of the checks below. When you cannot run its script, apply it by hand, line by line, on the text in this chat. Then print each check as PASS or FAIL with the line that failed, and add the words "checked by hand" to the result. Never edit a draft only to make a check pass; fix the real problem or report it.
 
 Every check gives one of three results: PASS, FAIL (list each failing line and why), or CANNOT CHECK (the input is missing; ask the owner for it).
 
 ## Brief check (step 1)
+Script: `python3 scripts/check_brief.py BRIEF.md`
 The facts sheet and voice profile are "Key: value" lines.
 1. Present, not blank, not [NEED]: Offer, Price rule, Guarantee, Launch date, Close date, Time zone, Segments, Signup promise, Primary action, Support route.
 2. Never claims: 3 or more items separated by ";".
@@ -24,6 +25,7 @@ The facts sheet and voice profile are "Key: value" lines.
 8. Links per email: 1 or 2.
 
 ## Run-plan check (step 2, before any email past email 1 is drafted)
+Script: `python3 scripts/check_run.py [--cap N] PLAN.md`
 The run plan is a table: Email | Day | Segment | Type | Job | Doubt | Subject angle | Link | Deadline | Exclude | Status.
 1. Every column present and every cell filled ("none" or "n/a", never blank).
 2. One job per email: no "and", "&", "+", ";" or "/" in Job.
@@ -38,7 +40,8 @@ The run plan is a table: Email | Day | Segment | Type | Job | Doubt | Subject an
 11. Status is planned, draft or owner-approved. This bot never writes sent or scheduled.
 12. Plan-approval gate: Status reads owner-approved only after the owner says yes to the plan in chat.
 
-## Email check (the hand-check half of the 14-point send check)
+## Email check (the scripted half of the 14-point send check)
+Script: `python3 scripts/check_email.py [--banned FILE] [--facts FILE] [--max-subject N] DRAFT.md [DRAFT.md ...]`
 Each draft has a header (Email, Type, Segment, Exclude, Send, Deadline, Subject, Preview) above the body. Mark each point PASS, FAIL or MANUAL (a person must look in {EMAIL_TOOL}).
 1. Banned words: none of delve, tapestry, crucial, pivotal, testament, underscore, showcase, foster, harness, unlock, elevate, empower, seamless, effortless, holistic, transformative, unparalleled, vibrant, robust, streamline, game-changer, game changing, supercharge, leverage, groundbreaking, world-class, best-in-class, "we're thrilled", "excited to share", "I hope this finds you", "let's dive in", "click here", "learn more", "read more", "just checking in", "act now", "once in a lifetime", "lowest price ever", "selling fast", "don't miss out", or any word from {BANNED_WORDS_FILE}. Check every form of each word (seamlessly, unlocks, leverages).
 2. Locks: {UNSUBSCRIBE} and a sign-off ({SENDER_NAME} or the brief's sign-off) are present.
@@ -57,6 +60,7 @@ Each draft has a header (Email, Type, Segment, Exclude, Send, Deadline, Subject,
 Result: FIX if any point fails; otherwise PASS, then do the MANUAL items and the cold read.
 
 ## Leak check
+Script: `python3 scripts/check_leak.py <file or folder> [--terms FILE] [--exempt NAME ...]`
 Run on every draft and on anything the owner may share or export. FAIL on any of these:
 1. A file path from a computer (a home folder, a workspace folder, a path starting with a tilde).
 2. A social handle (an at-sign followed by a name).
@@ -66,6 +70,7 @@ Run on every draft and on anything the owner may share or export. FAIL on any of
 6. Any private word the owner listed (their company, product, people or customers) appearing where the text will be shared outside the owner's chat.
 
 ## Export check (only when the owner asks to export or copy a skill)
+Script: `python3 scripts/check_credit.py <folder> [--exempt NAME ...]`
 1. The first line of every exported skill is the dylan-pak-credit comment.
 2. The last two lines are "Created and curated by Dylan Pak." and the license note.
 3. The leak check passes on every exported file.

@@ -59,11 +59,11 @@ Every item has one owner and a time. Overdue items lead the next report.
    - G7 replies owner and backup are named and will be online.
    - G8 the rollback plan is written (what the owner does if the page or offer breaks mid-launch).
 2. PASS needs "evidence:". RISK needs "accepted: yes" from the owner. FAIL needs "owner:" and "deadline:".
-3. Run the gates check (check_gates). It prints the verdict: GO, GO WITH RISKS, or NO-GO.
+3. Run the gates check (`scripts/check_gates.py`). It prints the verdict: GO, GO WITH RISKS, or NO-GO.
 
 ## Gate
 - Part A: The fields check (brief) passes and the market card prints PASS.
-- Part C: The gates check (check_gates) passes. Any FAIL, or any RISK the owner has not accepted, is NO-GO.
+- Part C: The gates check (`scripts/check_gates.py`) passes. Any FAIL, or any RISK the owner has not accepted, is NO-GO.
 
 ## Output
 ```
@@ -89,7 +89,7 @@ Next: <step>
 - Never invent a deadline or cap to create urgency.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-x-launch-desk-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the facts-ledger check: `python3 scripts/check_facts_ledger.py <draft file> <ledger file>`; the fields check: `python3 scripts/check_fields.py <kind> <filled file>`; the gates check: `python3 scripts/check_gates.py <gates file>`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-x-launch-desk-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

@@ -12,7 +12,7 @@ Build or refresh a 30-to-60-person quote lineup for a launch post on X. Score ea
 ## Steps
 1. **Start from what was already used.** Ask the owner to paste earlier quote or amplification packs for this launch. Write a used-creators log with every account already used, swapped out, or always skipped. Never put a logged account back in the lineup unless the owner asks for that.
 2. **Collect overlap evidence. Reuse what exists first.**
-   - Look for audience reports the owner already has (for example an audience-research tool's "who this audience follows" list). Do not create a new paid or quota-costing report unless the owner asks for one.
+   - Look for audience reports the owner already has (for example a "who this audience follows" list). Do not create a new paid or quota-costing report unless the owner asks for one.
    - Read the owner's own followers, read-only, to find warm adjacency.
    - Use public keyword search only as a last resort. Mark anyone found that way as "overlap unproven."
 3. **Check each candidate's last ten posts.**

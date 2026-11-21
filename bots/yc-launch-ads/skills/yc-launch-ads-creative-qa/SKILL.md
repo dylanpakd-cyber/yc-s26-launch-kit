@@ -8,10 +8,10 @@ description: "YC Launch Ads: use when the owner asks \"review this ad/creative/v
 WHEN TO USE: the owner asks "review this ad/creative/video/static", is this asset ready to hand off; this skill covers QA of a finished asset: truth, format, destination match. WHEN NOT: checking a single line or claim (claims-and-preflight). One-off asks can load this skill directly; a full run reaches it through yc-launch-ads-workflow.
 # SKILL: creative-qa
 
-Purpose: check a finished video or static before any spend. Read the file only. Report each problem with a timecode or a position, so the format desk can fix it in one pass.
+Purpose: check a finished video or static before any spend. Read the file only. Report each problem with a timecode or a position, so whoever built the file can fix it in one pass.
 
 ## Use when
-- A built video or static comes back from the format desk or a creator.
+- A built video or static comes back from whoever built it (the owner, an editor, a creator or a video tool). No built file yet: this step is optional; mark it "not run" and hand the brief to the owner as the build spec.
 - The owner says "QA this", "check the video", "is this ready to upload", "check the first three seconds", "safe zones".
 - After any re-render.
 
@@ -39,7 +39,7 @@ Not for: claim review (yc-launch-ads-claims-and-preflight) or judging whether th
 7. **Words on screen:** run the on-screen text and transcript through the style check and the leak check. Compare every number with the ledger using the facts-ledger check.
 8. **Static checks:** text legible at phone size; product not cropped; price or terms correct or absent per {PRICE_RULE}; no generation artifacts, warped hands or banding; one to one with the reference if it is a remake.
 9. **Grade:** PASS (no FAIL, no WARN), WATCH (WARN only), REJECT (any FAIL). REJECT blocks upload and any further paid generation.
-10. **Review loop.** Collect notes on exact timestamps. Send the FAIL list to the format desk. When it returns, re-run every check, not only the fixed ones.
+10. **Review loop.** Collect notes on exact timestamps. Send the FAIL list to whoever built the file. When it returns, re-run every check, not only the fixed ones.
 
 ## Gate
 No FAIL items. WATCH items are listed for the owner to accept or fix. Reused scenes across cuts count as one creative in the test plan.
@@ -69,7 +69,7 @@ Next: re-run QA after fixes, or if PASS, test design in the companion YC Ad Test
 - Never trigger paid generation from QA.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-launch-ads-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the style check: `python3 scripts/check_style.py <file or folder> [--banned FILE] [--exempt NAME ...]`; the leak check: `python3 scripts/check_leak.py <file or folder> [--terms FILE] [--exempt NAME ...]`; the facts-ledger check: `python3 scripts/check_facts_ledger.py <draft file> <ledger file>`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-launch-ads-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

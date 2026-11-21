@@ -13,7 +13,7 @@ Purpose: turn an ad worth learning from, or a passing concept card, into one com
 ## Use when
 - The owner shares a reference ad and says "make one like this", "swipe this", "brief this", "turn this into an ad".
 - A concept card passed and needs a buildable brief.
-- The format desk asks for a brief, a shot list or plates.
+- Whoever builds the ad (the owner, an editor, a creator or a video tool) needs a brief, a shot list or plates.
 
 Not for: generating or rendering media, or spending. Hand the brief to the format owner.
 
@@ -74,7 +74,7 @@ Next: yc-launch-ads-claims-and-preflight Part A
 - Never spend, render or publish from this skill.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-launch-ads-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the fields check: `python3 scripts/check_fields.py <kind> <filled file>`; the brand-pack check: `python3 scripts/check_brand_pack.py <BRAND-PACK.md>`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-launch-ads-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

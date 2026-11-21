@@ -63,7 +63,7 @@ Public data only. Never log in as someone, never message anyone, never scrape be
 `findings`: scope block, item table (ID, words, verbatim yes or no, source ref, date, bucket, label, buyer-like), theme table, repeated-question list, demand rating, limits note. In chat: the top five themes with counts. Report: Done, Blocked, Next.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-customer-voice-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the evidence check: `python3 scripts/check_evidence.py --bank BANK.md [--doc DOC.md] [--min-sources N]`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-customer-voice-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

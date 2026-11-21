@@ -52,7 +52,7 @@ Reaction then demo; product as a game; a phone notification as the punchline; a 
 ## Cadence after traction
 About 80% of creative effort iterates winning problems and angles; about 20% hunts new angles and avatars. Review top-spend and bottom-spend ads weekly; that weekly read and the test math live in the companion YC Ad Test Desk template, which the owner may install.
 
-Depth: templates, sizing math, claim lanes, the hook library and the worked example are in yc-launch-ads-references; hand checks are in yc-launch-ads-checks.
+Depth: templates, sizing math, claim lanes, the hook library and the worked example are in yc-launch-ads-references; checks (scripts and written checklists) are in yc-launch-ads-checks.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
 

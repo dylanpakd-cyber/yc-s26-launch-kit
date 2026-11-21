@@ -26,10 +26,10 @@ Inputs: ad-level results for the last full week, the week before and lifetime, p
 11. **Words stay, picture changes:** when words and voice carry the sale and the picture wears out, keep the audio and rebuild the visuals two ways: the speaker cut out over fresh footage, or the winning story as large on-screen text over silent fresh footage. Check edges, safe zones and legibility before delivery.
 12. **Brand check before briefs:** run the brand-pack check (yc-ad-test-desk-checks); a thin brand pack holds back the briefs only, not the numbers.
 13. **Next week's briefs:** each next-rung line names the winner, its keep-parts, the one flex part to change and the proof it rests on. Full concept cards and briefs are written in the companion YC Launch Ads template (concept-spec, then reference-to-brief) when the owner has it installed; otherwise hand the owner these brief seeds as the output.
-14. **Report** with the weekly report (template 5 in yc-ad-test-desk-references).
+14. **Report** with the weekly report (template 5 in yc-ad-test-desk-references) and run the fields check (winner-read).
 
 ## Gate
-Every ad is tiered by spend before its return is discussed. No ad under {WINNER_SPEND_FLOOR} is called a winner. Every next-rung brief changes exactly one flex part and says which. Each "iteration" label rests on a spend-proven winner; otherwise it is relabeled "variation".
+The weekly report passes the fields check (winner-read). Every ad is tiered by spend before its return is discussed. No ad under {WINNER_SPEND_FLOOR} is called a winner. Every next-rung brief changes exactly one flex part and says which. Each "iteration" label rests on a spend-proven winner; otherwise it is relabeled "variation".
 
 ## Output
 ```
@@ -54,7 +54,7 @@ The owner's numbers stay in the owner's chat.
 Never invent results or fill missing weeks. Never pause, scale, duplicate or edit ads. Never call a variation an iteration. Never paste the owner's numbers outside their chat.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: every check named here is in yc-ad-test-desk-checks; apply it by hand and write "checked by hand".
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the brand-pack check: `python3 scripts/check_brand_pack.py <BRAND-PACK.md>`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-ad-test-desk-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

@@ -98,7 +98,7 @@ If you want next week planned before Sunday comes, this is the moment.
 All selling drafts in this chat in the email file format, plus a calendar table in chat: day, time with zone, segment, email, chosen subject, resend rule, exclude list. Then three lists: drafted, approved, needs a decision.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-waitlist-email-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the run-plan check: `python3 scripts/check_run.py [--cap N] PLAN.md`; the email check: `python3 scripts/check_email.py [--banned FILE] [--facts FILE] [--max-subject N] DRAFT.md [DRAFT.md ...]`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-waitlist-email-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

@@ -48,7 +48,7 @@ Not for: writing the script (yc-launch-ads-ad-script-and-hooks) or choosing the 
 ## Gate
 The fields check (concept) passes. That requires all four sentences, all seven cell fields, a mechanism line, an awareness level from the allowed list, one test variable (no "and", "+", "/" or ";"), and "Destination match: YES".
 
-Also by hand: every proof line exists in the ledger, and each sentence is specific enough that a result could prove it wrong.
+Also by hand (no script covers this): every proof line exists in the ledger, and each sentence is specific enough that a result could prove it wrong.
 
 ## Output
 One concept card per idea, numbered, in the owner's chat:
@@ -78,7 +78,7 @@ Backlog ideas go to a list at the end with the missing field named.
 - Never send a card to a brief without a passing check.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-launch-ads-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the fields check: `python3 scripts/check_fields.py <kind> <filled file>`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-launch-ads-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

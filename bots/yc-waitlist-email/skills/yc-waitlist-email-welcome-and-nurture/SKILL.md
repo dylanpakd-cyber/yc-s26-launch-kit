@@ -86,7 +86,7 @@ What made you join? Hit reply and tell me in a line. I read every one.
 Drafts in this chat (W1, W2, N1 to N5, B1 for buyers) in the email file format, and a flow map table in chat: email, trigger, delay, job, give, exit rule. Then three lists: drafted, approved, needs a decision.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-waitlist-email-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the email check: `python3 scripts/check_email.py [--banned FILE] [--facts FILE] [--max-subject N] DRAFT.md [DRAFT.md ...]`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-waitlist-email-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

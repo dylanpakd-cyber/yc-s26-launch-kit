@@ -8,7 +8,7 @@ description: "YC Ad Test Desk: use when the owner asks \"how should we test this
 WHEN TO USE: as in the description. WHEN NOT: decoding an existing winner (winner-decode-and-iteration).
 # SKILL: test-design-and-reads
 
-Part 1 designs the test before any spend (chain step 7). Part 2 reads the result into a verdict packet (chain step 8). The bot reports evidence; the owner approves, launches and decides what lives, dies or scales. The bot never sets "Owner yes".
+Part 1 designs the test before any spend (chain step T1). Part 2 reads the result into a verdict packet (chain step T3). The bot reports evidence; the owner approves, launches and decides what lives, dies or scales. The bot never sets "Owner yes".
 
 ## Part 1: test design
 A test is a question with a budget attached. If you cannot write the question, the one variable, the success gate and the stop gate first, it is spend with a diary.
@@ -75,7 +75,7 @@ Gate: the fields check (verdict-packet) passes, with gates as declared at launch
 - Never copy the owner's numbers outside their chat.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: every check named here is in yc-ad-test-desk-checks; apply it by hand and write "checked by hand".
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the fields check: `python3 scripts/check_fields.py <kind> <filled file>`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-ad-test-desk-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

@@ -34,7 +34,7 @@ Drafts only: the output is a draft file. Never paste it into {EMAIL_TOOL}, never
    - End with {UNSUBSCRIBE} or the tool's footer token.
 6. **Subject and preview.** Write five subject lines using different patterns from yc-waitlist-email-references ("Subject line bank"). Recommend one. Each is 45 characters or fewer, no price, no fake "Re:". The preview text finishes the subject's thought and does not repeat it.
 7. **Fill the header** in the email file format (yc-waitlist-email-references ("Email file format")): Email, Type, Segment, Exclude, Send, Deadline, Subject, Preview.
-8. **Self-check** against {EMAIL_LOCKS}. Then apply the email check by hand.
+8. **Self-check** against {EMAIL_LOCKS}. Then run the email check (`python3 scripts/check_email.py <draft>`, or by hand without code).
 
 ## Edit mode (tighten and clean)
 1. Inventory the facts. They do not change. Not one word of the offer block changes.
@@ -108,7 +108,7 @@ Fact inventory matches the brief. No invented claims. Five subject lines with on
 One block per email, headed `email-nn`, in the email file format. In chat: the draft, the five subject lines with the pick, the fact line ("facts used: n, [NEED]: list"), the lock-check result and the five scores from yc-waitlist-email-workflow.
 
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
-Hand checks: this bot runs no scripts. Every check named in this skill is a written checklist in yc-waitlist-email-checks. Apply it by hand, line by line, and write "checked by hand" next to the result.
+Checks (repo edition): each check named in this skill has a script in this bot's `scripts/` folder. Run it from the bot folder and paste its PASS or FAIL line: the email check: `python3 scripts/check_email.py [--banned FILE] [--facts FILE] [--max-subject N] DRAFT.md [DRAFT.md ...]`. If you cannot run code (for example inside a Grok Bot template), apply the same written checklist from yc-waitlist-email-checks by hand and write "checked by hand".
 
 ---
 Created and curated by Dylan Pak.

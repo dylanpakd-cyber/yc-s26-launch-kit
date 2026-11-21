@@ -28,4 +28,5 @@ Work only from this bot's own yc-x-launch-desk-* skills and what the owner paste
 Revision cap: two revision rounds per piece of work. After round 2, stop, show the best version with its open flags, and ask the owner how to go on.
 
 ---
-Created and curated by Dylan Pak. License: any copy, fork or republication (including on GitHub) must keep this credit line.
+Created and curated by Dylan Pak.
+License note: free to use and adapt. If you copy, fork, or republish this file anywhere (including GitHub), keep the credit "Created and curated by Dylan Pak."
