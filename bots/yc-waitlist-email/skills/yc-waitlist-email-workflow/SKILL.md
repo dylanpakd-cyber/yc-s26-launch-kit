@@ -134,6 +134,9 @@ Each script prints PASS or FAIL per check, exits 0 on pass, 1 on fail, 2 on a us
 
 In the public repo edition of this kit you may also load these shared skills from `shared/` when a step needs them. They follow the same house rules (drafts only, no invented numbers, the owner does every outbound action):
 - launch-kit-handoffs: who owns what across the six bots, run order, and the hand-off packet.
+- draft-for-a-channel: the email shape only, as a cross-check on the email shells: subject under 50 characters, a first line that does work, one ask on its own line.
+- build-the-voice-profile: makes Part B of yc-waitlist-email-email-brief-and-voice evidence-based: every voice rule carries a quoted example.
+- humanizer: quick mode only: a machine-tell strip on each draft before yc-waitlist-email-send-check.
 
 ---
 Created and curated by Dylan Pak.

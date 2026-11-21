@@ -53,6 +53,10 @@ Each bot has the same skill shape:
 | [`outlier-idea-archive`](shared/outlier-idea-archive/SKILL.md) | X Launch Desk, Launch Copy |
 | [`meeting-transcripts-to-copy-desk`](shared/meeting-transcripts-to-copy-desk/SKILL.md) | Customer Voice, Launch Copy |
 | [`paid-creative-loop`](shared/paid-creative-loop/SKILL.md) | Ad Test Desk (all sections), Launch Ads (sections 3 to 5) |
+| [`edit-a-draft`](shared/edit-a-draft/SKILL.md) | Launch Copy |
+| [`draft-for-a-channel`](shared/draft-for-a-channel/SKILL.md) | Launch Copy (post, blog, landing page, DM, release notes), Waitlist Email (email shape only) |
+| [`build-the-voice-profile`](shared/build-the-voice-profile/SKILL.md) | Launch Copy, Waitlist Email |
+| [`humanizer`](shared/humanizer/SKILL.md) | Waitlist Email (quick mode only), Launch Copy (quick mode on every draft, full mode on request) |
 
 ## Use it in Grok Bot
 

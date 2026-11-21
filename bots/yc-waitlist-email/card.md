@@ -23,6 +23,9 @@ Import into Grok Bot: TEMPLATE_LINK (yc-waitlist-email)
 ## Shared kit skills it can use
 
 - [`launch-kit-handoffs`](../../shared/launch-kit-handoffs/SKILL.md): who owns what across the six bots, run order, and the hand-off packet
+- [`draft-for-a-channel`](../../shared/draft-for-a-channel/SKILL.md): the email shape only, as a cross-check on the email shells: subject under 50 characters, a first line that does work, one ask on its own line
+- [`build-the-voice-profile`](../../shared/build-the-voice-profile/SKILL.md): makes Part B of yc-waitlist-email-email-brief-and-voice evidence-based: every voice rule carries a quoted example
+- [`humanizer`](../../shared/humanizer/SKILL.md): quick mode only: a machine-tell strip on each draft before yc-waitlist-email-send-check
 
 ## Folders in this bot
 

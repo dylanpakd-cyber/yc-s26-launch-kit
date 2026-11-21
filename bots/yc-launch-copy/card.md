@@ -28,6 +28,10 @@ Import into Grok Bot: TEMPLATE_LINK (yc-launch-copy)
 - [`x-source-scan`](../../shared/x-source-scan/SKILL.md): 5 to 8 proven X posts on a topic, ranked by how repackageable they are
 - [`outlier-idea-archive`](../../shared/outlier-idea-archive/SKILL.md): swipe log of posts that spread, with the first-line wording move named
 - [`meeting-transcripts-to-copy-desk`](../../shared/meeting-transcripts-to-copy-desk/SKILL.md): turns meeting transcripts into redacted pull-quotes for the copy bots
+- [`edit-a-draft`](../../shared/edit-a-draft/SKILL.md): edit mode (keeps the owner's draft, numbered change list) or rewrite mode, with a fact inventory first
+- [`draft-for-a-channel`](../../shared/draft-for-a-channel/SKILL.md): post, blog, landing page, DM and release-notes shapes (waitlist emails stay with YC Waitlist Email, the launch-day X post with YC X Launch Desk)
+- [`build-the-voice-profile`](../../shared/build-the-voice-profile/SKILL.md): 10 to 20 checkable voice rules, each with a quoted example, from samples or a named site
+- [`humanizer`](../../shared/humanizer/SKILL.md): quick mode on every draft (edit-a-draft calls it); full 7-pass scorecard when the owner asks
 
 ## Folders in this bot
 

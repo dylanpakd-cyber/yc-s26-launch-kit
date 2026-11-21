@@ -137,6 +137,10 @@ In the public repo edition of this kit you may also load these shared skills fro
 - x-source-scan: 5 to 8 proven X posts on a topic, ranked by how repackageable they are.
 - outlier-idea-archive: swipe log of posts that spread, with the first-line wording move named.
 - meeting-transcripts-to-copy-desk: turns meeting transcripts into redacted pull-quotes for the copy bots.
+- edit-a-draft: edit mode (keeps the owner's draft, numbered change list) or rewrite mode, with a fact inventory first.
+- draft-for-a-channel: post, blog, landing page, DM and release-notes shapes (waitlist emails stay with YC Waitlist Email, the launch-day X post with YC X Launch Desk).
+- build-the-voice-profile: 10 to 20 checkable voice rules, each with a quoted example, from samples or a named site.
+- humanizer: quick mode on every draft (edit-a-draft calls it); full 7-pass scorecard when the owner asks.
 
 ---
 Created and curated by Dylan Pak.
